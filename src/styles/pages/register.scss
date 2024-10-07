@@ -1,0 +1,63 @@
+@import "../main.scss";
+
+.container {
+  @extend %full-page;
+  color: $white;
+  font-size: 16px;
+}
+
+.register__form__standard {
+  max-width: 373px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 72px auto;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .error {
+    color: #ff3344;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .first-name-placement,
+  .last-name-placement,
+  .email-placement,
+  .password-placement,
+  .confirm-placement,
+  .phone-placement {
+    font-size: 14px;
+    display: none;
+    margin-top: 8px;
+    opacity: 0;
+  }
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+}
+
+.register__top__standard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  padding: 30px 120px;
+
+  @include media("<=phone") {
+    padding: 24px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}

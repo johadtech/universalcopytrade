@@ -1,0 +1,36 @@
+%full-page {
+  background-color: $bg-800;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  // display: grid;
+}
+
+%main-page {
+  padding: 0px 32px;
+
+  @include media("<=phone") {
+    padding: 0px 16px;
+  }
+}
+
+// TODO; fix text styles and grids
+
+%container {
+  padding: 9.6rem 8rem;
+
+  @include media("<=phone") {
+    padding: 6.4rem 0rem;
+  }
+}
+
+%wrapper {
+  padding: 0rem 3.2rem;
+  max-width: 121.6rem;
+
+  @include media("<=phone") {
+    max-width: unset;
+    width: 100%;
+    padding: 0rem 1.6rem;
+  }
+}

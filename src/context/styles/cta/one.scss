@@ -1,0 +1,53 @@
+@import '../main.scss';
+
+.cta__one__container{
+    padding: 0rem 11.2rem;
+    padding-bottom: 9.6rem;
+
+    @include media('<=phone'){
+        padding: 0rem 1.6rem;
+        padding-bottom: 6.4rem;
+    }
+}
+
+.cta__one__wrapper{
+    background: $blue-500;
+    max-width: 121.6rem;
+    width: 100%;
+    display: flex;
+    padding: 6.4rem;
+    justify-content: space-between;
+    border-radius: 1.6rem;
+    
+    @include media('<=phone'){
+        display: grid;
+        padding: 4rem 2.4rem;
+        max-width: unset;
+        gap: 7.6rem;
+        width: 100%
+    }
+}
+
+.cta__one__text{
+    @extend %display-sm;
+    font-weight: 600;
+    color: $white;
+}
+
+.cta__one__buttons{
+    display: flex;
+    gap: 1.2rem;
+
+    @include media('<=phone'){
+        display: grid;
+    }
+}
+
+.cta__one__button__blue{
+    @extend %blue-button-small; 
+}
+
+.cta__one__button__white{
+    @extend %white-button-small; 
+}
+

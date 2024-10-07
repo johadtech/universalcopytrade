@@ -1,0 +1,118 @@
+@import "../main.scss";
+
+// .container {
+//   @extend %full-page;
+//   color: $white;
+//   font-size: 16px;
+// }
+
+.login__top__standard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // background-color: blue;
+  height: max-content;
+  padding: 30px 120px;
+
+  @include media("<=phone") {
+    padding: 24px;
+  }
+  // background-color: aqua;
+
+  .link {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+}
+
+.login__form__standard {
+  max-width: 373px;
+  width: 100%;
+  // background-color: yellow;
+  max-height: fit-content;
+  margin: 200px auto;
+
+  @include media("<=phone") {
+    // margin: 0 auto 32px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .forgot_password {
+    color: #0c6ef2;
+    font-weight: 600;
+    margin-top: -8px;
+  }
+
+  .link {
+    text-decoration: underline;
+    color: #0c6ef2;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .captions {
+    display: grid;
+    gap: 12px;
+    font-size: 14px;
+    color: #bac2de;
+  }
+
+  .error {
+    color: #ff3344;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .first-name-placement,
+  .last-name-placement,
+  .email-placement,
+  .password-placement,
+  .confirm-placement,
+  .phone-placement {
+    font-size: 14px;
+    display: none;
+    margin-top: 8px;
+    opacity: 0;
+  }
+}
+
+// .login__form__new {
+//   place-self: center;
+//   max-width: 345px;
+//   width: 100%;
+//   margin: 72px auto;
+
+//   .title {
+//     margin-bottom: 48px;
+//   }
+
+//   h1 {
+//     font-size: 28px;
+//     font-weight: 500;
+//     color: #000;
+//   }
+
+//   .login__form__new__supporting__text {
+//     color: #66666e;
+//     margin-top: 16px;
+//     // font-weight: 500;
+//   }
+
+//   .login__form__new__supporting__text span {
+//     color: #0c6ef2;
+//   }
+// }

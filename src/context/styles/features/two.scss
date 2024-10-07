@@ -1,0 +1,42 @@
+@import '../main.scss';
+
+.features__two__container{
+    padding: 9.6rem 8rem;
+    background-color: #F9FAFB;
+
+    @include media('<=phone') {
+        padding: 6.4rem 1.6rem;
+    }
+}
+
+.features__two__wrapper{
+    display: flex;
+    gap: 3.2rem;
+    padding: 0 3.2rem;
+
+    @include media('<=phone') {
+        display: grid;
+        gap: 4rem;
+        padding: 0;
+    }
+}
+
+.features__two__feature{
+    display: grid;
+    justify-items: center;
+    gap: 0.8rem;
+    text-align: center;
+    max-width: 38.4rem;
+}
+
+.features__two__feature__title{
+    @extend %text-xl;
+    font-weight: 600;
+    color: $dark-500;
+    margin-top: 1.2rem;
+}
+
+.features__two__feature__text{
+    @extend %text-md;
+    color: $dark-300;
+}

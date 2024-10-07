@@ -1,0 +1,58 @@
+@import '../main.scss';
+
+.stats__one__container{
+    padding: 9.6rem 8rem;
+    // background-color: $dark-50;
+
+    @include media('<=phone'){
+        padding: 6.4rem 0rem;
+    }
+}
+
+.stats__one__wrapper{
+    padding: 0rem 3.2rem;
+
+
+    @include media('<=phone'){
+        padding: 0rem 1.6rem;
+    }
+}
+
+
+.stats__one__stats{
+    display: flex;
+    gap: 1.6rem;
+
+    @include media('<=phone'){
+        display: grid;
+        gap: 3.2rem;
+    }
+}
+
+.stats__one__stat{
+    max-width: 29.2rem;
+    width: 100%;
+    display: grid;
+    gap: 1.2rem;
+    padding: 6.4rem 0rem;
+    justify-items: center;
+
+    @include media('<=phone'){
+        padding: 0rem;
+        max-width: unset;
+        width: 100%;
+    }
+
+    h1{
+        @extend %display-xl;
+        color: $dark-500;
+        font-weight: 600;
+       
+    }
+    
+    p{
+        @extend %text-lg;
+        color: $dark-300;
+        font-weight: 500; 
+    }
+}

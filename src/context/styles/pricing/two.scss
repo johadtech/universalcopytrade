@@ -1,0 +1,169 @@
+@import '../main.scss';
+
+
+.pricing__two__container{
+    padding: 9.6rem 8rem;
+
+    @include media ('<=phone') {
+        padding: 3.2rem 0;
+    }
+
+}
+
+.pricing__two__wrapper{
+    max-width: 128.0rem;
+    padding: 0 3.2rem;
+    display: grid;
+    width: 100%;
+    justify-content: space-between;
+    place-content: center;
+
+    @include media ('<=tablet') {
+        padding: 0 1.6rem;
+        gap: 4.8rem;
+    }
+    
+    @include media ('<=phone') {
+        display: grid;
+        width: 100%;
+        padding: 0 1.6rem;
+        gap: 4.8rem;
+        place-content: center;
+    }
+}
+
+.pricing__two__text {
+    display: grid;
+    gap: 1.2rem;
+    max-width: 44.8rem;
+    height: max-content;
+    width: 100%
+}
+
+.pricing__two__section__label {
+    @extend %text-md;
+    color: $blue-500;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.pricing__two__section__title{
+    @extend %display-md;
+    color: $dark-500;
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.pricing__two__section__supporting__text {
+    @extend %text-lg;
+    font-weight: 400;
+    color: $dark-400;
+    margin-top: 0.8rem;
+}
+
+.pricing__two__cards{
+    display: flex;
+    gap: 3.2rem;
+    margin-top: 4.8rem;
+
+    @include media('<=tablet'){
+        max-width: 100%;
+    }
+
+    
+    @include media ('<=phone') {
+        width: 100%;
+        display: grid;
+    }
+}
+
+.pricing__two__card{
+    background: $white;
+    box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+    width: 33.6rem;
+    display: grid;
+    border: 0.1rem solid $dark-50;
+    border-radius: 1.6rem;
+
+    @include media('<=tablet') {
+        min-width: 33.6rem * 1.221;
+        width: auto;
+    }
+
+    @include media('<=phone') {
+        // max-width: 34.3rem;
+        width: auto;
+    }
+}
+
+.pricing__two__card__mid{
+    padding: 3.2rem;
+    padding-bottom: 4rem;
+}
+
+.pricing__two__card__bottom{
+    padding: 3.2rem;
+    padding-top: 0;
+}
+
+.pricing__two__card__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3.2rem;
+    padding-top: 4rem;
+    padding-bottom: 0;
+    gap: 2rem;
+
+    span {
+        display: grid;
+        justify-items: center;
+    }
+}
+
+.pricing__two__card__name{
+    @extend %text-xl;
+    color: $dark-500;
+    font-weight: 600;
+   
+}
+
+.pricing__two__card__price {
+    @extend %display-lg;
+    font-weight: 600;
+    color: $dark-500;
+    margin-top: 0.8rem;
+}
+
+
+.pricing__two__feature__list {
+    display: grid;
+    gap: 1.6rem;
+}
+
+.pricing__two__feature__item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+
+    p {
+        @extend %text-md;
+        color: $dark-300;
+    }
+}
+
+.pricing__two__card__button{
+    @extend %text-md;
+    color: $white;
+    font-weight: 600;
+    background: $blue-500;
+    padding: 1.2rem 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 0.8rem;
+}
+
+.check {
+width: 2.4rem;
+height: 2.4rem;
+}

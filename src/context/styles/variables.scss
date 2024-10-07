@@ -1,0 +1,27 @@
+$breakpoints: ("phone": 768px, "tablet": 1240px) !default;
+
+@import 'node_modules/include-media/dist/include-media.scss';
+
+// Color Styles
+$gradient-one: linear-gradient(26.57deg, #0E121B 8.33%, #131824 8.34%, #1F273A 91.67%);
+$dark-50: #D2D4D8;
+$dark-100: #B4B7BD;
+$dark-200: #8F939D;
+$dark-300: #6A6F7C;
+$dark-400: #444B5B;
+$dark-500: #1F273A;
+$dark-600: #1A2130;
+$dark-700: #151A27;
+$dark-900: #10141D;
+$white: #FFFFFF;
+$grey: #EAECF0;
+$blue-50: #CFEBFE;
+$blue-100: #B0DDFD;
+$blue-200: #88CCFD;
+$blue-300: #60BBFC;
+$blue-400: #39AAFB;
+$blue-500: #1199FA;
+$blue-600: #0E80D0;
+$blue-700: #0B66A7;
+$blue-800: #094D7D;
+$blue-900: #063353;

@@ -1,0 +1,18 @@
+%container {
+    padding: 9.6rem 8rem;
+
+    @include media('<=phone'){
+        padding: 6.4rem 0rem;
+    }
+}
+
+%wrapper{
+    padding: 0rem 3.2rem;
+    max-width: 121.6rem;
+
+    @include media('<=phone'){
+        max-width: unset;
+        width: 100%;
+        padding: 0rem 1.6rem;
+    }
+}

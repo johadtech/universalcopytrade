@@ -1,0 +1,121 @@
+@import '../main.scss';
+
+.assets__two__container{
+    padding: 0rem 8rem;
+    padding-top: 9.6rem;
+    width: 100%;
+
+    @include media('<=phone'){
+        padding: 6.4rem 0rem;
+    }
+}
+
+
+.assets__two__wrapper{
+    display: grid;
+    max-width: 128rem;
+    gap: 6.4rem;
+    padding: 0rem 3.2rem;
+    text-align: center;
+    justify-items: center;
+
+    @include media('<=phone'){
+        padding: 0rem 1.6rem;
+    }
+}
+
+.assets__two__top{
+    display: grid;
+    gap: 1.2rem;
+}
+
+.assets__two__label{
+    @extend %text-md; 
+    font-weight: 600;
+    color: $blue-500;
+}
+
+
+.assets__two__title{
+    @extend %display-md;
+    font-weight: 600;
+    color: $dark-500;
+
+
+    @include media('<=phone'){    
+        font-size: 3rem;
+        line-height: 3.8rem;
+    }
+}
+
+.assets__two__text{
+    @extend %text-xl; 
+    margin-top: 0.8rem;
+    color: $dark-300;
+}
+
+.assets__two__desktop__figure{
+    width: 123.2rem;
+    height: auto;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    @include media('<=phone'){
+        display: none;
+    }
+}
+
+.assets__two__mobile__figure{
+    width: 34.08rem;
+    height: auto;
+    display: none;
+
+    
+    img{
+        width: 100%;
+        height: 100%;
+    }
+
+    @include media('<=phone'){
+        display: block;
+    }
+}
+
+
+.assets__two__item {
+  margin: 0 auto;
+  padding: 1em;
+  position: relative;
+  max-width: 34.08rem;
+  height: 40rem;
+  overflow: hidden;
+}
+
+.assets__two__item .assets__two__mobile__figure:before {
+  content: '';
+  background-image: linear-gradient(to top, rgba(1,1,1,0), rgba(239,239,239,0));
+  position: absolute;
+  height: 3rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.assets__two__item .assets__two__mobile__figure:after {
+  content: '';
+  display: block;
+  height: 999.9rem;
+}
+
+.assets__two__mobile__figure img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+//   box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
+  -ms-interpolation-mode: bicubic;
+}

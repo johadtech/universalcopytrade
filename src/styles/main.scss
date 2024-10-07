@@ -1,0 +1,18 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap);
+@import "variables.scss";
+@import "base.scss";
+@import "buttons.scss";
+@import "mixins.scss";
+@import "reset.scss";
+@import "text.scss";
+
+html {
+  font-size: 0.7rem;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  font-family: 'Inter', sans-serif;
+}

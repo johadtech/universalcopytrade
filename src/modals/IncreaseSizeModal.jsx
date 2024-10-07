@@ -1,0 +1,596 @@
+import { useEffect, useRef, useState } from "react";
+import Modal from "@mui/material/Modal";
+import { styled } from "styled-components";
+import { ClickAwayListener } from "@mui/material";
+import { LargeDivider } from "../styled/forms/dividers";
+import {
+  AmountBox,
+  DropDownBox,
+  FullButton,
+  MiniAmountBox,
+  MiniAmountBoxFull,
+  TextBox,
+  ToolTipContainer,
+} from "../styled/input/Input";
+
+import {
+  doc,
+  increment,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "@firebase/firestore";
+import { db } from "../firebase/firebase";
+import CircularLoader from "../styled/loaders/CircularLoader";
+import Toast from "../hooks/Toast";
+import { formatterZero } from "../utils/utils";
+
+const IncreaseSizeModal = ({ details, open, accounts, user }) => {
+  const { increaseProjectSize, setIncreaseProjectSize } = open;
+  const { investRealEstate, setInvestRealEstate } = open;
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
+  const {
+    minimum,
+    roi,
+    title,
+    description,
+    thumbnail,
+    ref,
+    duration,
+    daysLeft,
+    projectAmount,
+    pnl,
+  } = details;
+
+  // const [cryptoAccount, setCryptoAccount] = useState({});
+  const [balance, setBalance] = useState(undefined);
+
+  // toast
+  const [openToast, setOpenToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState(" ");
+  const [toastType, setToastType] = useState(undefined);
+
+  const { id } = user;
+
+  useEffect(() => {
+    if (accounts) {
+      const live = accounts.live;
+      if (live) {
+        // setAccount()
+        // setCryptoAccount(live.Crypto);
+        setBalance(live.Fiat.value);
+      }
+    }
+  }, [accounts]);
+
+  // amount
+  const amountRef = useRef();
+  const [amount, setAmount] = useState(undefined);
+  const [amountError, setAmountError] = useState(false);
+  function handleAmount(e) {
+    const { value } = e.target;
+
+    if (value) {
+      setAmount(Number(value));
+
+      if (Number(value) > balance) {
+        // value check
+        setToolTipMessage(
+          `Your current balance is ${formatterZero.format(
+            balance
+          )} but you are attempting to invest ${formatterZero.format(
+            Number(e.target.value)
+          )}, which is over your available balance`
+        );
+        setAmountError(true);
+      } else if (Number(value) < minimum) {
+        // minimum check
+        setAmountError(true);
+        setToolTipMessage(
+          `The minimum allowed for this project allowed is ${formatterZero.format(
+            minimum
+          )}`
+        );
+      }
+
+      // else if (Number(value) > maximum) {
+      //   // maximum check
+      //   setAmountError(true);
+      //   setToolTipMessage(`The maximum allowed for this project allowed is ${maximum}`);
+      // }
+      else {
+        // valid
+        setAmount(Number(value));
+        setAmountError(false);
+      }
+    } else {
+      setAmount(""); // empty value
+    }
+  }
+  const [showToolTip, setShowToolTip] = useState(false);
+  const [tooltipMessage, setToolTipMessage] = useState(
+    "Increasing your amount will double investment duration"
+  );
+
+  // roi & compiled
+  const [compiledTotal, setCompiledTotal] = useState(0);
+  const [showCompiledToolTip, setShowCompiledToolTip] = useState(false);
+  const compiledToolTipMessage = useState(
+    `This is the amount you will earn after the investment completes, plus your capital`
+  );
+
+  // investing
+  const [isIncreasing, setIsIncreasing] = useState(false);
+  function handleIncrease() {
+    const { id } = user;
+    setIsIncreasing(true);
+    decrementFiat(id);
+  }
+
+  async function decrementFiat(id) {
+    const q = doc(db, "accounts", id);
+    const key = `live.Fiat.value`;
+
+    try {
+      await updateDoc(q, {
+        [key]: increment(-Number(amount)),
+      }).then(() => {
+        // submitInvestment(id);
+        incrementBalance(id);
+      });
+    } catch (error) {
+      // setIsSubscribing(false);
+      setIsIncreasing(false);
+      setToastType("error");
+      setToastMessage("Failed to invest. Please try again later.");
+      setOpenToast(true);
+    }
+  }
+
+  async function incrementBalance(id) {
+    const q = doc(db, "balances", id);
+    // const key = `live.Fiat.value`;
+
+    try {
+      await updateDoc(q, {
+        realEstateBalance: increment(Number(amount)),
+      }).then(() => {
+        updateInvestment(id);
+      });
+    } catch (error) {
+      // setIsSubscribing(false);
+      setIsIncreasing(false);
+      setToastType("error");
+      setToastMessage("Failed to invest. Please try again later.");
+      setOpenToast(true);
+    }
+  }
+
+  async function updateInvestment(id) {
+    const q = doc(db, "investments", ref);
+    try {
+      await updateDoc(q, {
+        amount: increment(Number(amount)),
+        duration: duration * 2,
+        daysLeft: daysLeft * 2,
+      });
+      setIsIncreasing(false);
+      setToastType("success");
+      setToastMessage("Invested successfully");
+      setOpenToast(true);
+
+      setTimeout(() => {
+        setIncreaseProjectSize(false);
+      }, 700);
+    } catch (error) {
+      console.log("error", error);
+      setIsIncreasing(false);
+      setToastType("error");
+      setToastMessage("Failed to invest. Please try again later.");
+      setOpenToast(true);
+    }
+  }
+
+  useEffect(() => {
+    if (roi && duration && amount) {
+      setCompiledTotal(
+        Number((roi / 100) * amount + amount + pnl + projectAmount)
+      );
+    } else {
+      setCompiledTotal(undefined);
+    }
+  }, [roi, duration, amount]);
+
+  const [showRoiTooltip, setShowRoiTooltip] = useState(false);
+  const roiTooltipMessage =
+    "This is the total % of profits to be gained on this project";
+
+  return (
+    <>
+      {openToast && (
+        <Toast
+          open={{ openToast, setOpenToast }}
+          message={toastMessage}
+          type={toastType}
+        />
+      )}
+
+      <Modal
+        open={increaseProjectSize}
+        onClose={() => setIncreaseProjectSize(false)}
+        style={{
+          display: "flex",
+          placeContent: "center",
+          zIndex: "10001",
+        }}
+      >
+        <ModalStandard className="scrollbar-hide">
+          <div className="modal_top">
+            <p>Increase investment size </p>
+
+            <svg
+              width="15"
+              height="14"
+              viewBox="0 0 15 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={() => setIncreaseProjectSize(!increaseProjectSize)}
+              style={{ cursor: "pointer" }}
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.8647 0.366365C12.3532 -0.122122 13.1451 -0.122122 13.6336 0.366365C14.1221 0.854853 14.1221 1.64685 13.6336 2.13533L8.88929 6.87968L13.8743 11.8647C14.3628 12.3532 14.3628 13.1451 13.8743 13.6336C13.3858 14.1221 12.5938 14.1221 12.1053 13.6336L7.12032 8.64864L2.13533 13.6336C1.64685 14.1221 0.854853 14.1221 0.366366 13.6336C-0.122122 13.1451 -0.122122 12.3532 0.366366 11.8647L5.35136 6.87968L0.607014 2.13533C0.118527 1.64685 0.118527 0.854853 0.607014 0.366365C1.0955 -0.122122 1.8875 -0.122122 2.37598 0.366365L7.12032 5.11071L11.8647 0.366365Z"
+                fill="#858DAD"
+              />
+            </svg>
+          </div>
+
+          <div className="modal_content">
+            <div className="top">
+              <LargeDivider className="variant">
+                {/* name */}
+                <TextBox className="scrollbar-hide">
+                  <label htmlFor="address">Project:</label>
+                  <input
+                    type="text"
+                    placeholder={title}
+                    defaultValue={title}
+                    disabled
+                  />
+                </TextBox>
+
+                <MiniAmountBoxFull
+                  className={
+                    amountError ? "amount_box error" : "amount_box variant"
+                  }
+                >
+                  <div className="label">
+                    <p>
+                      Current amount: {formatterZero.format(projectAmount)}{" "}
+                    </p>
+                    <img
+                      src="./assets/misc/info.svg"
+                      alt=""
+                      className="error_inform"
+                      id="popcorn"
+                      style={{ display: "block" }}
+                      onClick={() => setShowToolTip(!showToolTip)}
+                    />
+                    {showToolTip && (
+                      <ClickAwayListener
+                        onClickAway={() => setShowToolTip(false)}
+                      >
+                        <div
+                          className="tooltip"
+                          id="tooltip"
+                          style={{ left: "1px" }}
+                        >
+                          {tooltipMessage}
+                        </div>
+                      </ClickAwayListener>
+                    )}
+                  </div>
+
+                  <div className="wrapper">
+                    <input
+                      type="number"
+                      placeholder="1000"
+                      onChange={handleAmount}
+                      ref={amountRef}
+                    />
+
+                    <span className="asset">
+                      <span>
+                        <p>USD</p>
+                      </span>
+                    </span>
+                  </div>
+
+                  {balance && (
+                    <div className="captions">
+                      <span>
+                        <p className="caption">Current balance</p>
+                        <p className="value">{formatterZero.format(balance)}</p>
+                      </span>
+                    </div>
+                  )}
+                </MiniAmountBoxFull>
+
+                {/* <DropDownBox className="type_select">
+                  <div className="wrapper">
+                    <p className="label">Duration (Days):</p>
+                    <span className="content">
+                      <select
+                        name="options"
+                        onChange={(e) => handleDuration(e)}
+                      >
+                        {durationOptions.map((option) => (
+                          <option value={option} key={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6 9L12 15L18 9"
+                          stroke="#5C6175"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </DropDownBox> */}
+
+                <MiniAmountBox className={"amount_box"}>
+                  <div className="label">
+                    <p>ROI:</p>
+                    <img
+                      src="./assets/misc/info.svg"
+                      alt=""
+                      className="error_inform"
+                      id="popcorn"
+                      style={{ display: "block" }}
+                      onClick={() => setShowRoiTooltip(!showRoiTooltip)}
+                    />
+                    {showRoiTooltip && (
+                      <ClickAwayListener
+                        onClickAway={() => setShowRoiTooltip(false)}
+                      >
+                        <div
+                          className="tooltip"
+                          id="tooltip"
+                          style={{ left: "1px" }}
+                        >
+                          {roiTooltipMessage}
+                        </div>
+                      </ClickAwayListener>
+                    )}
+                  </div>
+
+                  <div className="wrapper" style={{ padding: "24px" }}>
+                    <input
+                      type="number"
+                      placeholder={roi + "%"}
+                      //   onChange={(e) => handleDuration(e)}
+                      disabled
+                    />
+                  </div>
+                </MiniAmountBox>
+
+                {amount && (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        maxWidth: "180px",
+                        width: "100%",
+                        position: "relative",
+                      }}
+                    >
+                      {showCompiledToolTip && (
+                        <ClickAwayListener
+                          onClickAway={() =>
+                            setShowCompiledToolTip(!showCompiledToolTip)
+                          }
+                        >
+                          <ToolTipContainer>
+                            <div
+                              className="tooltip"
+                              id="tooltip"
+                              style={{
+                                bottom: "28px",
+                                left: "5px",
+                                width: "100%",
+                              }}
+                            >
+                              {compiledToolTipMessage}
+                            </div>
+                          </ToolTipContainer>
+                        </ClickAwayListener>
+                      )}
+                      <p
+                        style={{
+                          color: "#bac2de",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                        }}
+                      >
+                        Total returns on this investment
+                        <span
+                          style={{ position: "absolute", marginLeft: "4px" }}
+                        >
+                          <img
+                            src="./assets/misc/info.svg"
+                            alt=""
+                            className="error_inform"
+                            id="popcorn"
+                            onClick={() =>
+                              setShowCompiledToolTip(!showCompiledToolTip)
+                            }
+                          />
+                        </span>
+                      </p>
+                    </span>
+
+                    <span>
+                      <p
+                        style={{
+                          fontSize: "20px",
+                          color: "#5BDE4C",
+                          fontWeight: "600",
+                        }}
+                      >
+                        ~{formatterZero.format(compiledTotal)}
+                      </p>
+                    </span>
+                  </div>
+                )}
+              </LargeDivider>
+            </div>
+
+            <div className="bottom">
+              <FullButton
+                onClick={handleIncrease}
+                disabled={isIncreasing || !amount || !duration || !roi}
+                className={
+                  (isIncreasing || !amount || !duration || !roi) && "disabled"
+                }
+              >
+                {isIncreasing ? (
+                  <div style={{ padding: "8px" }}>
+                    <CircularLoader bg="#cccccc" size="28" color="#ffffff" />
+                  </div>
+                ) : (
+                  <p>Invest</p>
+                )}
+              </FullButton>
+            </div>
+          </div>
+        </ModalStandard>
+      </Modal>
+    </>
+  );
+};
+
+const ModalStandard = styled.div`
+  background-color: #151823;
+  border-radius: 12px;
+  max-width: 430px;
+  place-self: center;
+  width: 100%;
+  border: 1px solid transparent;
+  z-index: 10001;
+
+  .bottom button {
+    cursor: pointer;
+    width: 100%;
+    background-color: #0c6cf2;
+    padding: 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .bottom button:hover {
+    background-color: #ff3344;
+  }
+
+  .bottom {
+    margin-top: 32px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100vw;
+    max-width: unset;
+    height: fit-content;
+    max-height: 90vh;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 48px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow-y: scroll;
+
+    .bottom button {
+      margin: 0;
+    }
+
+    .top {
+      margin-bottom: 52px;
+    }
+
+    .bottom {
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      width: 100%;
+      padding: 12px 24px;
+      height: fit-content;
+      background-color: #151823;
+      z-index: 999;
+      border: none;
+      outline: none;
+      /* display: none; */
+    }
+  }
+
+  .modal_top {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #1b1f2d;
+    width: 100%;
+    padding: 14px 30px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal_content {
+    padding: 24px;
+  }
+
+  .modal_content .top {
+    display: grid;
+    gap: 24px;
+  }
+`;
+
+// const SubscriptionCardStandard = styled.div`
+//   background-color: #151823;
+//   height: 100;
+//   border-radius: 12px;
+// `;
+
+export default IncreaseSizeModal;
+
+// outlinedModal
+// filledModal

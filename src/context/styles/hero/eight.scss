@@ -1,0 +1,117 @@
+@import "../main.scss";
+
+.hero__eight__container{
+    padding: 9.6rem 8rem;
+    background-color: $white;
+    position: relative;
+    height: 84.1rem;
+    overflow: hidden;
+
+    @include media('<=phone'){
+        padding:  6.4rem 0rem;
+        height: 50.6rem
+    }
+}
+
+.hero__eight__wrapper{
+    padding: 9.6rem 3.2rem;
+    max-width: 76.8rem;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    margin: 0 auto;
+    z-index: 3;
+   
+
+    @include media('<=phone'){
+        padding: 0rem 1.6rem;
+        text-align: left;
+        justify-items: left
+    }
+}
+
+.hero__eight__tag{
+    @extend %text-md;
+    color: $dark-300;
+    font-weight: 600;
+
+    @include media('<=phone'){
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+}
+
+.hero__eight__text{
+    @extend %display-2xl;
+    font-weight: 600;
+    color: $dark-500;
+    // margin-top: 1.2rem;
+
+    @include media('<=phone'){
+        font-size: 3.6rem;
+        line-height: 4.4rem;
+    }
+}
+
+.hero__eight__supporting__text{
+    @extend %text-xl;
+    color: $dark-300;
+    font-weight: 400;
+    margin-top: 2.4rem;
+
+    @include media('<=phone'){
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
+}
+
+.hero__eight__buttons{
+    gap: 1.2rem;
+    display: flex;
+    margin-top: 4.8rem;
+
+    @include media('<=phone'){
+        display: grid;
+        width: 100%
+    }
+}
+
+.hero__eight__button__blue {
+    @extend %hero__button__blue;
+    width: max-content;
+    justify-self: center;
+    border: none;
+
+    @include media('<=phone'){
+        width: 100%;
+        padding: 1.2rem 0rem;
+    }
+}
+
+
+.hero__eight__button__white{
+    @extend %hero__button__white;
+    width: max-content;
+    justify-self: center;
+
+    @include media('<=phone'){
+        width: 100%;
+        padding: 1.2rem 0rem;
+    }
+}
+
+.hero__eight__rainbow__figure{
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    left: 30rem;
+    top: 10rem;
+    z-index: 1;
+    opacity: 0.6;
+    
+    @include media('<=phone') {
+        left: -20rem;
+        opacity: 0.4;
+        // display: none;
+    }
+}

@@ -1,0 +1,103 @@
+@import "../main.scss";
+
+.hero__four__container{
+    padding: 9.6rem 8rem;
+    padding-bottom: 9.6rem;
+    height: 60.2rem;
+    position: relative;
+    background-color: $dark-600;
+    overflow-y: hidden;
+
+    @include media('<=phone') {
+        padding: 6.4rem 0rem;
+        height: 70.6rem;
+    }
+}
+
+
+.hero__four__wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 3.2rem;
+    
+    
+    @include media('<=phone') {
+        display: grid;
+        padding: 0rem;
+    }
+}
+
+.hero__four__top{
+    text-align: left;
+    max-width: 59.2rem;
+    width: 100%;
+
+    @include media('<=phone') {
+        width: 100%;
+        padding: 0rem 1.6rem;
+    }
+}
+
+.hero__four__title{
+    @extend %display-xl;
+    font-weight: 600;
+    color: $white;
+    margin-top: 1.2rem;
+
+    @include media('<=phone'){
+        font-size: 3.6rem;
+        line-height: 4.4rem;
+    }
+}
+
+.hero__four__text{
+    @extend %text-xl;
+    color: $dark-50;
+    font-weight: 400;
+    margin-top: 2.4rem;
+
+    @include media('<=phone'){
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
+}
+
+
+.hero__four__button {
+    @extend %hero__button__blue;
+    margin-top: 4.8rem;
+    box-shadow: none;
+    border: none;
+    justify-self: left;
+
+    @include media('<=phone'){
+        width: 100%;
+        padding: 1.2rem 0rem;
+    }
+}
+
+.hero__four__desktop__figure {
+    max-width: 112.4rem;
+    height: auto;
+    position: absolute;
+    right: -50.6rem;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    @include media('<=phone') {
+        display: none;
+    }
+}
+
+.hero__four__mobile__figure{
+    display: none;
+    margin-top: 7rem;
+    justify-self: center;
+
+    @include media('<=phone') {
+        display: block;
+    }
+}

@@ -1,0 +1,21 @@
+@import "../main.scss";
+
+.container {
+  @extend %full-page;
+  color: $white;
+  font-size: 16px;
+}
+
+.questionnaire__form {
+  place-self: center;
+  max-width: max-content;
+  width: 100%;
+  margin: 72px auto;
+  // padding: "0px 20px",
+
+  h1 {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 48px;
+  }
+}

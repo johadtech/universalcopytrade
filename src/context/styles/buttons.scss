@@ -1,0 +1,84 @@
+%blue-button-small {
+    @extend %text-md;
+    padding: 1.2rem 2rem;
+    background-color: $blue-400;
+    box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+    border-radius: 0.8rem;
+    outline: none;
+    border: none;
+    color: $white;
+    font-weight: 600;
+}
+
+%white-button-small {
+    @extend %text-md;
+    padding: 1.2rem 2rem;
+    background-color: $white;
+    box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+    border-radius: 0.8rem;
+    outline: none;
+    border: none;
+    color: $dark-500;
+    font-weight: 600;
+}
+
+%blue-button-large {
+    @extend %text-md;
+    padding: 1.2rem 0rem;
+    background-color: $blue-400;
+    box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+    border-radius: 0.8rem;
+    outline: none;
+    border: none;
+    color: $white;
+    font-weight: 600;
+    width: 100%;
+}
+
+%transparent-button {
+    @extend %text-md;
+    padding: 1.2rem 0rem;
+    background-color: transparent;
+    border-radius: 0.8rem;
+    outline: none;
+    border: none;
+    color: $dark-500;
+    font-weight: 600;
+    width: 100%;
+}
+
+%white-button-large {}
+
+
+%hero__button__blue {
+   @extend %text-md;
+   font-weight: 600;
+   padding: 1.6rem 2.8rem;
+   background-color: $blue-500;
+   color: $white;
+   border: 1px solid #0E80D0;
+   box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+   border-radius: 0.8rem;
+}
+
+%hero__button__white {
+    @extend %text-md;
+    font-weight: 600;
+    padding: 1.6rem 2.8rem;
+    background-color: $white;
+    color: $dark-500;
+    border: 1px solid $white;
+    box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+    border-radius: 0.8rem;
+ }
+
+%hero__button__blue__long {
+    @extend %text-md;
+    font-weight: 600;
+    padding: 1.2rem 2rem;
+    background-color: $blue-500;
+    color: $white;
+    border: 1px solid #0E80D0;
+    box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+    border-radius: 0.8rem;
+ }

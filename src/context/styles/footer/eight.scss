@@ -1,0 +1,149 @@
+@import '../main.scss';
+
+
+
+.footer__eight__cta__container{
+     background-color: $dark-600;
+     padding: 6.4rem 8rem;
+
+     @include media('<=phone'){
+        padding: 4.8rem 1.6rem;
+    }
+}
+
+.footer__eight__cta__wrapper{
+    max-width: 76.8rem;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    margin: 0 auto;
+
+    @include media('<=phone'){
+        max-width: unset;
+    }
+}
+
+.footer__eight__hr{
+    border: none;
+    background-color: transparent;
+    margin-top: 6.4rem;
+    border-bottom: 1px solid #475467;
+    width: 100%
+}
+
+.footer__eight__cta__title{
+    @extend %display-sm;
+    font-weight: 600;
+    color: $white;
+}
+
+.footer__eight__cta__text{
+    @extend %text-xl;
+    margin-top: 1.6rem;
+    color: $dark-50;
+
+    @include media('<=phone'){
+       font-size: 1.6rem;
+       line-height: 2.4rem;
+     }
+}
+
+.footer__eight__buttons{
+    margin-top: 4rem;
+    display: flex;
+    gap: 1.2rem;
+
+    @include media('<=phone'){
+       display: grid;
+       width: 100%;
+    }
+}
+
+.footer__eight__button__blue{
+    @extend %blue-button-small; 
+}
+
+.footer__eight__button__white{
+    @extend %white-button-small; 
+    border: 0.1rem solid #D0D5DD;   
+}
+
+.footer__eight__container{
+    padding: 0rem 6.4rem;
+    padding-bottom: 4.8rem;
+    background-color: $dark-600;
+    
+    @include media('<=phone'){
+        padding: 0rem;
+        padding-bottom: 4.8rem;
+        padding-top: 2.2rem;
+    }
+}
+
+.footer__eight__wrapper{
+    padding: 0 3.2rem;
+    display: grid;
+    gap: 6.4rem;
+}
+
+.footer__eight__brand{
+    display: grid;
+    gap: 3.2rem;
+}
+
+.footer__eight__brand__links {
+    display: flex;
+    gap: 1.6rem;
+
+    a {
+    text-decoration: none;
+    outline: none;
+    }
+  
+
+    @include media('<=phone'){
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: auto auto;
+    }
+}
+
+.footer__eight__brand__text{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+
+
+.footer__eight__brand__link{
+    @extend %text-md;
+    color: $white;
+    font-weight: 600;
+}
+
+.footer__eight__disclaimer{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+    display: none;
+}
+
+.footer__eight__bottom{
+    display: grid;
+    gap: 3.2rem;
+
+    hr{
+        width: 100%;
+        border: none;
+        border-top: 1px solid #475467;
+        background-color: transparent;
+    }
+}
+
+.footer__eight__reserved{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+

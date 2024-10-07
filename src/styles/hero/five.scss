@@ -1,0 +1,159 @@
+@import "../main.scss";
+
+.hero__five__container{
+    padding: 9.6rem 8rem;
+    padding-bottom: 9.6rem;
+    height: 70.4rem;
+    position: relative;
+    overflow: hidden;
+
+    @include media('<=phone') {
+        padding: 6.4rem 0rem;
+        height: 70.6rem;
+    }
+}
+
+
+.hero__five__wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 3.2rem;
+    
+    @include media('<=phone') {
+        display: grid;
+        padding: 0rem;
+    }
+}
+
+.hero__five__top{
+    text-align: left;
+    max-width: 64rem;
+    width: 100%;
+
+    @include media('<=phone') {
+        max-width: 41.3rem;
+        width: 100%;
+        padding: 0rem 1.6rem;
+    }
+}
+
+.hero__five__tag{
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    border: 0.15rem solid $blue-500;
+    border-radius: 1.6rem;
+    width: 10rem;
+    width: max-content;
+    padding: 0.2rem 0rem;
+}
+
+.hero__five__tag__label{
+    @extend %text-sm;
+    font-weight: 500;
+    color: $blue-500;
+    border: 0.15rem solid $blue-500;
+    padding: 0.2rem 1rem;
+    align-self: center;
+    margin-left: 0.4rem;
+    border-radius: 1.6rem;
+    mix-blend-mode: normal;
+
+    @include media('<=phone') {   
+            font-size: 1.2rem;
+            line-height: 1.8rem;
+    }
+}
+
+.hero__five__tag__text{
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+
+    p{
+        @extend %text-sm;
+        font-weight: 500;
+        color: $blue-500;
+    }
+
+    img {
+        padding: 0.333rem;
+        width: 2rem;
+    }
+
+    @include media('<=phone') {
+        p{
+            // font-size: 1.2rem;
+            // line-height: 1.8rem;
+        }
+    }
+}
+
+.hero__five__title{
+    @extend %display-xl;
+    font-weight: 600;
+    color: $dark-500;
+    margin-top: 1.6rem;
+
+    @include media('<=phone'){
+        font-size: 3.6rem;
+        line-height: 4.4rem;
+    }
+}
+
+.hero__five__text{
+    @extend %text-xl;
+    color: $dark-300;
+    font-weight: 400;
+    margin-top: 2.4rem;
+
+    @include media('<=phone'){
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
+}
+
+
+.hero__five__button {
+    @extend %hero__button__blue;
+    margin-top: 4.8rem;
+    box-shadow: none;
+    border: none;
+    justify-self: left;
+
+    @include media('<=phone'){
+        width: 100%;
+        padding: 1.2rem 0rem;
+    }
+}
+
+.hero__five__desktop__figure {
+    max-width: 51.2rem;
+    height: auto;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    @include media('<=phone') {
+        display: none;
+    }
+}
+
+.hero__five__mobile__figure{
+    display: none;
+    margin-top: 7rem;
+    justify-self: center;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    @include media('<=phone') {
+        max-width: unset;
+        display: block;
+        width: 100%;
+    }
+}

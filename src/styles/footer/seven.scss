@@ -1,0 +1,148 @@
+@import '../main.scss';
+
+
+
+.footer__seven__cta__container{
+     background-color: $dark-600;
+     padding: 6.4rem 8rem;
+
+     @include media('<=phone'){
+        padding: 4.8rem 1.6rem;
+    }
+}
+
+.footer__seven__cta__wrapper{
+    max-width: 76.8rem;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    margin: 0 auto;
+
+    @include media('<=phone'){
+        max-width: unset;
+    }
+}
+
+.footer__seven__hr{
+    border: none;
+    background-color: transparent;
+    margin-top: 6.4rem;
+    border-bottom: 1px solid #475467;
+    width: 100%
+}
+
+.footer__seven__cta__title{
+    @extend %display-sm;
+    font-weight: 600;
+    color: $white;
+}
+
+.footer__seven__cta__text{
+    @extend %text-xl;
+    margin-top: 1.6rem;
+    color: $dark-50;
+
+    @include media('<=phone'){
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+      }
+}
+
+.footer__seven__buttons{
+    margin-top: 4rem;
+    display: flex;
+    gap: 1.2rem;
+
+    @include media('<=phone'){
+       display: grid;
+       width: 100%;
+    }
+}
+
+.footer__seven__button__blue{
+    @extend %blue-button-small; 
+}
+
+.footer__seven__button__white{
+    @extend %white-button-small; 
+    border: 0.1rem solid #D0D5DD;   
+}
+
+.footer__seven__container{
+    padding: 0rem 6.4rem;
+    padding-bottom: 4.8rem;
+    padding-top: 6.4rem;
+    background-color: $dark-600;
+    
+    @include media('<=phone'){
+        padding: 0rem;
+        padding-bottom: 4.8rem;
+        padding-top: 6.4rem;
+    }
+}
+
+.footer__seven__wrapper{
+    padding: 0 3.2rem;
+    display: grid;
+    gap: 6.4rem;
+}
+
+.footer__seven__brand{
+    display: grid;
+    gap: 3.2rem;
+}
+
+.footer__seven__brand__links {
+    display: flex;
+    gap: 1.6rem;
+
+    @include media('<=phone'){
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: auto auto;
+    }
+}
+
+.footer__seven__brand__text{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+
+
+.footer__seven__brand__link{
+    @extend %text-md;
+    color: $white;
+    font-weight: 600;
+}
+
+.footer__seven__brand__logo{
+    width: 18.2rem;
+    height: auto;
+}
+
+.footer__seven__disclaimer{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+
+.footer__seven__bottom{
+    display: grid;
+    gap: 3.2rem;
+
+    hr{
+        width: 100%;
+        border: none;
+        border-top: 1px solid #475467;
+        background-color: transparent;
+    }
+}
+
+.footer__seven__reserved{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+

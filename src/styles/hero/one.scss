@@ -1,0 +1,116 @@
+@import "../main.scss";
+
+.hero__one__container{
+    background-color: $dark-600;
+    padding: 9.6rem 8rem;
+    max-height: 95.8rem;
+    overflow-y: hidden;
+
+    @include media('<=phone'){
+        padding: 0rem;
+        max-height: 87.5rem;
+    }
+}
+
+.hero__one__wrapper{
+    display: grid;
+    gap: 6.4rem;
+    text-align: center;
+    justify-items: center;
+
+
+    @include media('<=phone'){
+       text-align: left;
+    }
+    
+}
+
+.hero__one__top{
+    display: grid;
+    max-width: 76.8rem;
+    width: 100%;
+    // padding: 0 22.4rem;
+
+    @include media('<=phone'){
+        max-width: unset;
+        padding: 0 1.6rem;
+        margin: 6.4rem 0rem;
+    }
+
+}
+
+
+.hero__one__label{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 600;
+
+    @include media('<=phone'){
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+}
+
+.hero__one__title{
+    @extend %display-2xl;
+    font-weight: 600;
+    color: $white;
+    margin-top: 1.2rem;
+
+    @include media('<=phone'){
+        font-size: 3.6rem;
+        line-height: 4.4rem;
+    }
+}
+
+.hero__one__text{
+    @extend %text-xl;
+    color: $dark-50;
+    font-weight: 400;
+    margin-top: 2.4rem;
+
+    @include media('<=phone'){
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
+}
+
+
+.hero__one__button {
+    @extend %hero__button__blue;
+    margin-top: 4.8rem;
+    width: max-content;
+    justify-self: center;
+
+    @include media('<=phone'){
+        width: 100%;
+        padding: 1.2rem 0rem;
+    }
+}
+
+.hero__one__desktop__figure{
+    max-width: 128rem;
+    width: 100%;
+
+    img{
+        width: 100%;
+    }
+
+    @include media('<=phone'){
+        display: none;
+    }
+}
+
+.hero__one__mobile__figure{
+    display: none;
+    max-width: 28.4rem;
+    width: 100%;
+
+    img{
+        width: 100%;
+    }
+
+    @include media('<=phone'){
+        display: block;
+    }
+}

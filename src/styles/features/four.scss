@@ -1,0 +1,122 @@
+@import '../main.scss';
+
+.features__four__container{
+    padding: 9.6rem 8rem;
+
+    @include media ("<=phone"){
+        padding: 6.4rem 1.6rem;
+    }
+}
+
+.features__four__wrapper{
+    display: grid;
+    gap: 6.4rem;
+    padding: 0 3.2rem;
+
+    @include media('<=phone') {
+        padding: 0rem;
+    }
+}
+
+.features__four__top{
+    display: grid;
+    gap: 1.6rem;
+    max-width: 76.8rem;
+    width: 100%;
+    text-align: left;
+
+    @include media ("<=phone"){
+        max-width: unset;
+        width: auto;
+    }
+}
+
+.features__four__top__label{
+    @extend %text-md;
+    color: $blue-500;
+    max-width: max-content;
+    font-weight: 600;
+}
+
+.features__four__top__title{
+    @extend %display-md;
+    color: $dark-500;
+    font-weight: 600;
+
+    @include media ("<=phone"){
+        font-size: 3rem;
+        line-height: 3.8rem;
+    }
+}
+
+.features__four__top__text {
+    @extend %text-xl;
+    font-weight: 400;
+    color: $dark-300;
+
+    @include media ("<=phone"){
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
+}
+
+.features__four__bottom {
+    display: flex;
+    gap: 2.4rem;
+
+    @include media ("<=phone"){
+        display: grid;
+    }
+}
+
+.features__four__feature{
+    padding: 2.4rem;
+    display: grid;
+    max-width: 28.6rem;
+    background: #F9FAFB;
+
+    @include media ("<=phone"){
+        width: 100%;
+        max-width: unset;
+        padding: 2rem;
+    }
+
+}
+
+.features__four__feature__icon{
+    width: 4.8rem;
+    height: 4.8rem;
+}
+
+.features__four__feature__title{
+    @extend %text-xl;
+    font-weight: 600;
+    color: $dark-500;
+    margin-top: 6.4rem;
+}
+
+.features__four__feature__text{
+    @extend %text-md;
+    color: $dark-400;
+    margin-top: 0.8rem;
+
+    @include media ("<=phone"){
+        width: 100%;
+    }
+}
+
+.features__four__feature__link{
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2rem;
+
+    p{
+        @extend %text-md;
+        font-weight: 600;
+        color: $blue-500;
+    }
+
+    img{
+        width: 1.16rem
+    }
+}

@@ -1,0 +1,107 @@
+@import '../main.scss';
+
+
+
+.footer__three__cta{
+    background-color: $dark-600;
+    height: 16.6rem;
+    position: relative;
+    margin-top: 20.2rem;
+    display: none;
+    
+    @include media('<=phone'){
+        margin-top: 22.9rem;
+    }
+}
+
+.footer__three__cta__container{
+     position: absolute;
+     width: 100%;
+     bottom: -1.3rem;
+}
+
+.footer__three__container{
+    padding: 8rem 6.4rem;
+    background-color: $dark-600;
+    
+    @include media('<=phone'){
+        padding: 0rem;
+        padding-bottom: 4.8rem;
+        padding-top: 2.2rem;
+    }
+}
+
+.footer__three__wrapper{
+    padding: 0 3.2rem;
+    display: grid;
+    gap: 6.4rem;
+}
+
+.footer__three__brand{
+    display: grid;
+    gap: 3.2rem;
+}
+
+.footer__three__brand__text{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+
+.footer__three__brand__links {
+    display: flex;
+    gap: 3.2rem;
+
+    @include media('<=phone'){
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+
+.footer__three__brand__link{
+    @extend %text-md;
+    color: $white;
+    font-weight: 600;
+}
+
+.footer__three__disclaimer{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+    // display: none;
+}
+
+.footer__three__bottom{
+    display: grid;
+    gap: 3.2rem;
+
+    hr{
+        width: 100%;
+        border: none;
+        border-top: 1px solid #475467;
+        background-color: transparent;
+    }
+}
+
+.footer__three__reserved{
+    @extend %text-md;
+    color: $dark-50;
+    font-weight: 400;
+}
+
+.footer__three__reserved__wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer__three__social__links{
+    display: none;
+    gap: 2.4rem;
+}
+
+.footer__three__social__link{
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
