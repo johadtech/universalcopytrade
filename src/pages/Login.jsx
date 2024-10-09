@@ -15,6 +15,8 @@ import { doc, serverTimestamp, updateDoc } from "@firebase/firestore";
 import CircularLoader from "../styled/loaders/CircularLoader";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import Toast from "../hooks/Toast";
+// import {getData} from "../utils/getData";
+import {getDoc, onSnapshot} from "firebase/firestore";
 
 const Login = () => {
   // show password
@@ -29,19 +31,43 @@ const Login = () => {
   const [loader, setLoader] = useState(true);
 
   const [user, loading] = useAuthState(auth);
-  const { userData } = useContext(context);
+  const { userData, setUserData } = useContext(context);
   //const { userData = {} } = useContext(context);
+
+  // console.log("setUserData function:", setUserData);
 
   // toast
   const [openToast, setOpenToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(" ");
   const [toastType, setToastType] = useState(undefined);
 
+  async function getUserData(id) {
+    try {
+      const userDoc = await getDoc(doc(db, "users", id));  // Using getDoc instead of onSnapshot
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        console.log("Firestore-User data: ", data);
+        return data;
+      } else {
+        console.log("No such document!");
+        return null;
+      }
+    } catch (e) {
+      console.log("Error fetching user data: ", e);
+      return null;
+    }
+  }
   // navigate user on logged in state
   useEffect(() => {
     console.log("Loading:", loading);
     console.log("User:", user);
     console.log("UserData:", userData);
+    // console.log('User ID: ', user.uid)
+
+    // if (!loading && user){
+    //   navigate("/dashboard");
+    //   setLoader(false);
+    // }
 
     if (!loading && user && userData) {  // Check if userData is not undefined
       if (userData.blocked) {
@@ -150,14 +176,25 @@ const Login = () => {
                   const { email, password } = values;
 
                   try {
-                    const user = await signInWithEmailAndPassword(
+                    const userInfo = await signInWithEmailAndPassword(
                       auth,
                       email,
                       password
                     );
-                    if (user) {
+                    if (userInfo) {
                       // setIsSigningIn(false);
                       // const { verified } = userData;
+
+                      // Fetch user data after login
+                      const userData = await getUserData(userInfo.user.uid);
+
+                      // Set the userData to context or state
+                      if (userData) {
+                        setUserData(userData); // Assuming setUserData is from context
+                        console.log("User data set in context:", userData);
+                      }
+
+                      console.log('userdata-new: ', userData)
 
                       // if (verified) {
                       navigate("/dashboard");
@@ -166,7 +203,8 @@ const Login = () => {
                       // }
 
                       // toast.success("Welcome back!");
-                      setLoginStatus(user.user.uid);
+                      console.log("user login data: ", user)
+                      await setLoginStatus(user.user.uid);
                     }
                   } catch (error) {
                     setIsSigningIn(false);

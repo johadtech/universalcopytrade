@@ -18,14 +18,17 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   const { userData } = useContext(context);
 
+  console.log('User: ' + user, 'userData: ' + userData);
+  
   // toast
   const [openToast, setOpenToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(" ");
   const [toastType, setToastType] = useState(undefined);
+
 
   useEffect(() => {
     if (!loading && user && userData) {

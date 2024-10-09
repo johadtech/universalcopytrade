@@ -33,14 +33,14 @@ import Wallet from "./pages/Wallet";
 
 function App() {
   const [user, loading] = useAuthState(auth);
-  const { userData } = useContext(context);
+  const { userData, setUserData } = useContext(context);
   const [hasPopup, setHasPopup] = useState(false);
   const [text, setText] = useState(null);
   const [title, setTitle] = useState(null);
 
   useEffect(() => {
     if (!loading && user && userData) {
-      // console.log("data is", userData);
+      console.log("data is", userData);
       if (userData.popup) {
         // console.log("yh");
         setHasPopup(true);
