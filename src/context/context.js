@@ -454,7 +454,7 @@ const Provider = ({ children }) => {
     const config = {
       method: "get",
       headers: {
-        "X-RapidAPI-Key": "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+        "X-RapidAPI-Key": process.env.REACT_APP_X_RAPIDAPI_KEY,
         "X-RapidAPI-Host": "redstone.p.rapidapi.com",
       },
     };
@@ -537,7 +537,7 @@ const Provider = ({ children }) => {
       method: "get",
       headers: {
         "X-RapidAPI-Host": "coingecko.p.rapidapi.com",
-        "X-RapidAPI-Key": "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+        "X-RapidAPI-Key": process.env.REACT_APP_X_RAPIDAPI_KEY,
       },
     };
 
@@ -583,8 +583,8 @@ const Provider = ({ children }) => {
     const config = {
       method: "get",
       headers: {
-        "Apca-Api-Key-Id": "PKQ6M7Z27HOJ5JZ6XEGN",
-        "Apca-Api-Secret-Key": "J7HXcztjRdTUHB0aGkihTdnTTdLGmiVDstpJNAd5",
+        "Apca-Api-Key-Id": process.env.REACT_APP_APCAPI_KEY_ID,
+        "Apca-Api-Secret-Key": process.env.REACT_APP_APCAPI_KEY_SECRET,
       },
     };
 
@@ -799,7 +799,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -827,7 +827,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -850,7 +850,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -875,7 +875,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -898,7 +898,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -924,7 +924,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
