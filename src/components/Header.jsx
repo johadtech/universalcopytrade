@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/header.scss";
+import { auth } from "../firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { context } from "../context/context";
+import { signOut } from "firebase/auth";
 
 // products extra = "Copy Trading"
 // company extra = "About us, privacy policy"
@@ -61,9 +65,18 @@ const Header = () => {
   const [activeDesktopMenu, setActiveDesktopMenu] = useState(null);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [activeMobileMenu, setActiveMobileMenu] = useState(null);
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
   const links = ["Products", "Company", "Resources"];
+
+  // handle signout
+  async function handleSignout() {
+    await signOut(auth);
+    navigate("/");
+    // clear local storage
+    localStorage.clear();
+  }
 
   function handleMobileMenu(name) {
     if (activeMobileMenu && activeMobileMenu === name) {
@@ -114,14 +127,22 @@ const Header = () => {
           )}
         </div>
 
-        <div className="header__buttons">
-          <button className="header__button__transparent">
-            <a href="https://app.universaltrademarket.com">Log In</a>
-          </button>
-          <button className="header__button__blue">
-            <a href="https://app.universaltrademarket.com">Sign up</a>
-          </button>
-        </div>
+        {user ? (
+          <div className="header__buttons">
+            <button className="header__button__transparent">
+              <a onClick={() => handleSignout()}>Sign Out</a>
+            </button>
+          </div>
+        ) : (
+          <div className="header__buttons">
+            <button className="header__button__transparent">
+              <a href="https://app.universaltrademarket.com">Log In</a>
+            </button>
+            <button className="header__button__blue">
+              <a href="https://app.universaltrademarket.com">Sign up</a>
+            </button>
+          </div>
+        )}
       </div>
 
       {activeDesktopMenu === "Resources" && (
@@ -296,14 +317,22 @@ const Header = () => {
               <Link to="/faq">Frequently Asked Questions</Link>
             </div>
 
-            <div className="header__buttons__mobile">
-              <button className="header__button__transparent">
-                <a href="https://app.universaltrademarket.com">Log In</a>
-              </button>
-              <button className="header__button__blue">
-                <a href="https://app.universaltrademarket.com">Sign up</a>
-              </button>
-            </div>
+            {user ? (
+              <div className="header__buttons">
+                <button className="header__button__transparent">
+                  <a onClick={() => handleSignout()}>Sign Out</a>
+                </button>
+              </div>
+            ) : (
+              <div className="header__buttons">
+                <button className="header__button__transparent">
+                  <a href="https://app.universaltrademarket.com">Log In</a>
+                </button>
+                <button className="header__button__blue">
+                  <a href="https://app.universaltrademarket.com">Sign up</a>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
