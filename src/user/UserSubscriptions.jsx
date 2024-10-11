@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { styled } from "styled-components";
 import { Search } from "../styled/input/Input";
-import { context } from "../context/context";
+// import { context } from "../context/context";
 import { ClickAwayListener, Grow, Skeleton } from "@mui/material";
 import Toast from "../hooks/Toast";
 import {
@@ -9,7 +9,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
-  orderBy,
+  // orderBy,
   query,
   updateDoc,
   where,
@@ -257,10 +257,10 @@ const UserSubscriptions = ({ user }) => {
       if (allSubscriptionsSelected) {
         setAllSubscriptionsSelected(false);
       }
-      let slicedArr = selectedSubscriptionList.splice(
-        selectedSubscriptionList.indexOf(value),
-        1
-      );
+      // let slicedArr = selectedSubscriptionList.splice(
+      //   selectedSubscriptionList.indexOf(value),
+      //   1
+      // );
 
       setSelectedSubscriptions([...selectedSubscriptionList]);
     } else {
@@ -328,25 +328,6 @@ const UserSubscriptions = ({ user }) => {
     }
   }
 
-  function handleSubscriptionsSearch(e) {
-    const { value } = e.target;
-    // let accountsList = allAccounts;
-
-    let filteredSubscriptions;
-
-    if (value) {
-      filteredSubscriptions = subscriptionsList.filter(
-        (subscriptions) =>
-          subscriptions.userRef?.name
-            .toLowerCase()
-            .includes(value.toLowerCase()) ||
-          subscriptions.ref.toLowerCase().includes(value.toLowerCase())
-      );
-      setSubscriptions(filteredSubscriptions);
-    } else {
-      setSubscriptions(subscriptionsList);
-    }
-  }
 
   // delete
   async function deleteSubscription(ref) {

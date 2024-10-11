@@ -5,12 +5,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-   apiKey: "AIzaSyCAOAk2OwV00UUJR0b9t7Q7_zjAW_BYXhk",
-   authDomain: "universal-trade-market.firebaseapp.com",
-   projectId: "universal-trade-market",
-   storageBucket: "universal-trade-market.appspot.com",
-   messagingSenderId: "750957883540",
-   appId: "1:750957883540:web:f61b464bdb19f093de4481",
+   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+   projectId: process.env.REACT_APP_PROJECTID,
+   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+   appId: process.env.REACT_APP_APP_ID,
 };
 
 // const firebaseConfig = {

@@ -7,7 +7,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
-  orderBy,
+  // orderBy,
   query,
   serverTimestamp,
   setDoc,
@@ -270,10 +270,10 @@ const UserVerifications = ({ user }) => {
       if (allVerificationsSelected) {
         setAllVerificationsSelected(false);
       }
-      let slicedArr = selectedVerificationList.splice(
-        selectedVerificationList.indexOf(value),
-        1
-      );
+      // let slicedArr = selectedVerificationList.splice(
+      //   selectedVerificationList.indexOf(value),
+      //   1
+      // );
 
       setSelectedVerifications([...selectedVerificationList]);
     } else {
@@ -907,7 +907,6 @@ const UserVerifications = ({ user }) => {
                               pointerEvents: "none",
                               fontSize: "14px",
                               fontWeight: "500",
-                              fontWeight: "500",
                               lineHeight: "20px",
                             }}
                           >
@@ -1102,7 +1101,6 @@ const UserVerifications = ({ user }) => {
                               pointerEvents: "none",
                               fontSize: "14px",
                               fontWeight: "500",
-                              fontWeight: "500",
                               lineHeight: "20px",
                             }}
                           >
@@ -1239,7 +1237,6 @@ const UserVerifications = ({ user }) => {
                               userSelect: "none",
                               pointerEvents: "none",
                               fontSize: "14px",
-                              fontWeight: "500",
                               fontWeight: "500",
                               lineHeight: "20px",
                             }}

@@ -18,24 +18,37 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   const { userData } = useContext(context);
 
+  console.log('User: ', user, 'userData: ', userData);
+  
   // toast
   const [openToast, setOpenToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(" ");
   const [toastType, setToastType] = useState(undefined);
 
+
   useEffect(() => {
-    if (!loading && user && userData) {
-      setLoader(false);
-    }
+    console.log('Auth state:', { loading, user, userData });
   
-    if (!loading && !user) {
-      navigate("/login");
+    if (!loading) {
+      if (user && userData) {
+        console.log('User authenticated and data loaded');
+        setLoader(false);
+      } else {
+        console.log('User not authenticated or data not loaded, redirecting to login');
+        navigate("/login");
+      }
+    } else {
+      console.log('Still loading auth state');
     }
-  }, [user, loading, userData, navigate]);
+  }, [loading, user, userData, navigate]);
+
+  if (loader || !userData) {
+    return <div>Loading...</div>; // Or your custom loader component
+  }
 
   return (
     <MainContainer>

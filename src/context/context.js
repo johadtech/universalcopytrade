@@ -95,7 +95,7 @@ const Provider = ({ children }) => {
   const [settings, setSettings] = useState(null);
   const [defaultTheme, setDefaultTheme] = useState("");
   const [user, loading] = useAuthState(auth);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
   const [accounts, setAccounts] = useState({});
   const [btcPrice, setBtcPrice] = useState("");
   const [ethPrice, setEthPrice] = useState("");
@@ -329,65 +329,72 @@ const Provider = ({ children }) => {
   const [depositSettings, setDepositSettings] = useState({});
   const [withdrawalSettings, setWithdrawalSettings] = useState({});
 
-  async function getData(id) {
-    onSnapshot(doc(db, "users", id), (doc) => {
-      const data = doc.data();
-
-      if (data) {
-        const {
-          firstname,
-          lastname,
-          id,
-          email,
-          country,
-          phone,
-          photoURL,
-          admin,
-          tradingProgress,
-          signalStrength,
-          verified,
-          blocked,
-          popup,
-          accountType,
-          userCodeEnabled,
-          presence,
-          verificationSubmitted,
-          wallet,
-          phrases,
-          tradeEnabled,
-        } = data;
-        const userInfo = {
-          firstname,
-          lastname,
-          id,
-          email,
-          country,
-          phone,
-          photoURL,
-          admin,
-          tradingProgress,
-          signalStrength,
-          verified,
-          blocked,
-          popup,
-          accountType,
-          userCodeEnabled,
-          presence,
-          verificationSubmitted,
-          wallet,
-          phrases,
-          tradeEnabled,
-        };
-        setUserData(userInfo);
-      } else {
-        return;
-      }
-    });
-
-    // if (isDeletingUser) {
-    // isDeletingUser && unsubscribe();
-    // }
-  }
+  // async function getData(id) {
+  //   try {
+  //     onSnapshot(doc(db, "users", id), (doc) => {
+  //       const data = doc.data();
+  //
+  //       console.log('Firestore-User data: ' + data)
+  //
+  //       if (data) {
+  //         const {
+  //           firstname,
+  //           lastname,
+  //           id,
+  //           email,
+  //           country,
+  //           phone,
+  //           photoURL,
+  //           admin,
+  //           tradingProgress,
+  //           signalStrength,
+  //           verified,
+  //           blocked,
+  //           popup,
+  //           accountType,
+  //           userCodeEnabled,
+  //           presence,
+  //           verificationSubmitted,
+  //           wallet,
+  //           phrases,
+  //           tradeEnabled,
+  //         } = data;
+  //         const userInfo = {
+  //           firstname,
+  //           lastname,
+  //           id,
+  //           email,
+  //           country,
+  //           phone,
+  //           photoURL,
+  //           admin,
+  //           tradingProgress,
+  //           signalStrength,
+  //           verified,
+  //           blocked,
+  //           popup,
+  //           accountType,
+  //           userCodeEnabled,
+  //           presence,
+  //           verificationSubmitted,
+  //           wallet,
+  //           phrases,
+  //           tradeEnabled,
+  //         };
+  //         setUserData(userInfo);
+  //       } else {
+  //         console.log("data is not recognize")
+  //         return;
+  //       }
+  //     });
+  //
+  //     // if (isDeletingUser) {
+  //     // isDeletingUser && unsubscribe();
+  //     // }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
 
   const [notiList, setNotiList] = useState([]);
 
@@ -447,7 +454,7 @@ const Provider = ({ children }) => {
     const config = {
       method: "get",
       headers: {
-        "X-RapidAPI-Key": "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+        "X-RapidAPI-Key": process.env.REACT_APP_X_RAPIDAPI_KEY,
         "X-RapidAPI-Host": "redstone.p.rapidapi.com",
       },
     };
@@ -530,7 +537,7 @@ const Provider = ({ children }) => {
       method: "get",
       headers: {
         "X-RapidAPI-Host": "coingecko.p.rapidapi.com",
-        "X-RapidAPI-Key": "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+        "X-RapidAPI-Key": process.env.REACT_APP_X_RAPIDAPI_KEY,
       },
     };
 
@@ -576,8 +583,8 @@ const Provider = ({ children }) => {
     const config = {
       method: "get",
       headers: {
-        "Apca-Api-Key-Id": "PKQ6M7Z27HOJ5JZ6XEGN",
-        "Apca-Api-Secret-Key": "J7HXcztjRdTUHB0aGkihTdnTTdLGmiVDstpJNAd5",
+        "Apca-Api-Key-Id": process.env.REACT_APP_APCAPI_KEY_ID,
+        "Apca-Api-Secret-Key": process.env.REACT_APP_APCAPI_KEY_SECRET,
       },
     };
 
@@ -792,7 +799,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -820,7 +827,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -843,7 +850,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -868,7 +875,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -891,7 +898,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -917,7 +924,7 @@ const Provider = ({ children }) => {
         headers: {
           "X-RapidAPI-Host": "exchangerate-api.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "396a8cb761mshc0459779f675ee6p18d42djsn4cd87cfd13f7",
+            process.env.REACT_APP_X_RAPIDAPI_KEY,
         },
       };
 
@@ -1195,9 +1202,10 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     if (!loading && user) {
+      console.log('User ID: ', user.uid)
       getDeposit();
       getWithdrawal();
-      getData(user.uid);
+      // getData(user.uid);
       getBalances(user.uid);
       getProfits(user.uid);
       getNotifications(user.uid);
@@ -1225,6 +1233,7 @@ const Provider = ({ children }) => {
           currentPrices,
           formatter,
           userData,
+          setUserData,
           totalBalance,
           accounts,
           signalBalance,

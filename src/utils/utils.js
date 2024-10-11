@@ -35,7 +35,7 @@ export function getTime(milliSeconds) {
 }
 
 export function formatFileSize(bytes, decimalPoint) {
-  if (bytes == 0) return "0 Bytes";
+  if (bytes === 0) return "0 Bytes";
   var k = 1000,
     dm = decimalPoint || 2,
     sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],

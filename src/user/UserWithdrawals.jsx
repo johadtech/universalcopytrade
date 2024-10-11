@@ -11,7 +11,7 @@ import {
   doc,
   getDocs,
   increment,
-  orderBy,
+  // orderBy,
   query,
   serverTimestamp,
   setDoc,
@@ -30,7 +30,7 @@ const UserWithdrawals = ({ user }) => {
   const [withdrawals, setWithdrawals] = useState([]);
   const [withdrawalsList, setWithdrawalsList] = useState([]);
 
-  const { currentPrices } = useContext(context);
+  // const { currentPrices } = useContext(context);
 
   // toast
   const [openToast, setOpenToast] = useState(false);
@@ -286,10 +286,10 @@ const UserWithdrawals = ({ user }) => {
       if (allWithdrawalsSelected) {
         setAllWithdrawalsSelected(false);
       }
-      let slicedArr = selectedWithdrawalList.splice(
-        selectedWithdrawalList.indexOf(value),
-        1
-      );
+      // let slicedArr = selectedWithdrawalList.splice(
+      //   selectedWithdrawalList.indexOf(value),
+      //   1
+      // );
 
       setSelectedWithdrawals([...selectedWithdrawalList]);
     } else {
@@ -999,7 +999,6 @@ const UserWithdrawals = ({ user }) => {
                               pointerEvents: "none",
                               fontSize: "14px",
                               fontWeight: "500",
-                              fontWeight: "500",
                               lineHeight: "20px",
                             }}
                           >
@@ -1181,7 +1180,6 @@ const UserWithdrawals = ({ user }) => {
                               pointerEvents: "none",
                               fontSize: "14px",
                               fontWeight: "500",
-                              fontWeight: "500",
                               lineHeight: "20px",
                             }}
                           >
@@ -1306,7 +1304,6 @@ const UserWithdrawals = ({ user }) => {
                               userSelect: "none",
                               pointerEvents: "none",
                               fontSize: "14px",
-                              fontWeight: "500",
                               fontWeight: "500",
                               lineHeight: "20px",
                             }}

@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { styled } from "styled-components";
 import { Search } from "../styled/input/Input";
-import { context } from "../context/context";
-import { ClickAwayListener, Grow, Skeleton } from "@mui/material";
+// import { context } from "../context/context";
+import { Skeleton } from "@mui/material";
 import Toast from "../hooks/Toast";
 import {
   collection,
   deleteDoc,
   doc,
   getDocs,
-  orderBy,
+  // orderBy,
   query,
   where,
 } from "firebase/firestore";
@@ -281,12 +281,12 @@ const UserSignals = ({ user }) => {
 
   // const checkBoxRef = useRef();
 
-  function handleSelectedRef(signal) {
-    const { ref } = signal;
-    // const { firstname } = user;
-    // console.log(firstname);
-    setSelectedRef(selectedRef === ref ? " " : ref);
-  }
+  // function handleSelectedRef(signal) {
+  //   const { ref } = signal;
+  //   // const { firstname } = user;
+  //   // console.log(firstname);
+  //   setSelectedRef(selectedRef === ref ? " " : ref);
+  // }
 
   // delete
   async function deleteSignal(ref) {
@@ -850,37 +850,37 @@ const UserSignalsStandard = styled.div`
   }
 `;
 
-const BottomSectionStandard = styled.div`
-  position: absolute;
-  right: 50px;
-  z-index: 1000;
-  top: -100px;
-  width: 100%;
-  border-radius: 8px;
-  z-index: 9999;
-  padding: 4px;
-  border: 1px solid #212945;
-  min-width: fit-content;
-  background-color: #1b1f2d;
-  white-space: nowrap;
-  box-shadow: 0px 4px 6px -2px rgba(16, 24, 40, 0.03),
-    0px 12px 16px -4px rgba(16, 24, 40, 0.08);
-
-  p {
-    font-size: 14px;
-    font-weight: 500;
-
-    color: #bac2de;
-    padding: 12px 16px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-
-  p:hover {
-    background-color: #1c233b;
-    border-radius: 6px;
-  }
-`;
+// const BottomSectionStandard = styled.div`
+//   position: absolute;
+//   right: 50px;
+//   z-index: 1000;
+//   top: -100px;
+//   width: 100%;
+//   border-radius: 8px;
+//   z-index: 9999;
+//   padding: 4px;
+//   border: 1px solid #212945;
+//   min-width: fit-content;
+//   background-color: #1b1f2d;
+//   white-space: nowrap;
+//   box-shadow: 0px 4px 6px -2px rgba(16, 24, 40, 0.03),
+//     0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+//
+//   p {
+//     font-size: 14px;
+//     font-weight: 500;
+//
+//     color: #bac2de;
+//     padding: 12px 16px;
+//     cursor: pointer;
+//     transition: all 0.3s ease-in-out;
+//   }
+//
+//   p:hover {
+//     background-color: #1c233b;
+//     border-radius: 6px;
+//   }
+// `;
 
 const HeadingStandard = styled.div`
   display: flex;
